@@ -36,6 +36,7 @@ func ReadConfig() (Config, error) {
 	if err != nil {
 		return Config{}, fmt.Errorf("error retrieving config file: %w", err)
 	}
+	defer file.Close()
 
 	data, err := io.ReadAll(file)
 	if err != nil {

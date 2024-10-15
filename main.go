@@ -12,4 +12,11 @@ func main() {
 		fmt.Println("error")
 	}
 	cfg.SetUser("ivan")
+
+	cfg, err = config.ReadConfig()
+	if err != nil {
+		fmt.Println("error")
+	}
+
+	fmt.Println(cfg)
 }
