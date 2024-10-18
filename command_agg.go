@@ -20,7 +20,7 @@ func handlerAgg(s *state, cmd command, user database.User) error {
 	ticker := time.NewTicker(duration)
 
 	for range ticker.C {
-		scrapeFeeds(s, cmd, user)
+		scrapeFeeds(s)
 	}
 
 	return nil

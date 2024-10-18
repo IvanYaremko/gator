@@ -9,7 +9,7 @@ import (
 	"github.com/IvanYaremko/gator/internal/database"
 )
 
-func scrapeFeeds(s *state, cmd command, user database.User) error {
+func scrapeFeeds(s *state) error {
 
 	nextFeed, err := s.db.GetNextFeedToFetch(context.Background())
 	if err != nil {
