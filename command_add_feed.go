@@ -36,6 +36,15 @@ func handlerAddFeed(s *state, cmd command) error {
 		return fmt.Errorf("error db create feed: %w", err)
 	}
 
+	newArgs := command{
+		name:      "follow",
+		arguments: []string{result.Url},
+	}
+
+	if err := handlerFollow(s, newArgs); err != nil {
+		fmt.Println("failed to add auto follow")
+	}
+
 	fmt.Println("new feed added:", result)
 
 	return nil

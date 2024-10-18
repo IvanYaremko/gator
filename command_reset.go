@@ -7,6 +7,10 @@ import (
 
 func handlerReset(s *state, cmd command) error {
 
+	if err := s.db.DeleteFeedFollows(context.Background()); err != nil {
+		return fmt.Errorf("failed to delete feed_follows table: %w", err)
+	}
+
 	if err := s.db.DeleteFeeds(context.Background()); err != nil {
 		return fmt.Errorf("failed deleting feeds table: %w", err)
 	}

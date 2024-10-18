@@ -62,7 +62,7 @@ func (q *Queries) CreateFeed(ctx context.Context, arg CreateFeedParams) (Feed, e
 }
 
 const deleteFeeds = `-- name: DeleteFeeds :exec
-DELETE from feeds
+DELETE FROM feeds
 `
 
 func (q *Queries) DeleteFeeds(ctx context.Context) error {
