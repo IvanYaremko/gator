@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"time"
 
 	"github.com/IvanYaremko/gator/internal/database"
+	"github.com/google/uuid"
 )
 
 func scrapeFeeds(s *state) error {
@@ -33,6 +33,26 @@ func scrapeFeeds(s *state) error {
 		return err
 	}
 
-	fmt.Println("scrapeFeeds ptr title", feedPtr.Channel.Title)
+	postArg := database.CreatePostParams{
+		ID:        uuid.New(),
+		CreatedAt: time.Now().UTC(),
+		UpdatedAt: time.Now().UTC(),
+		FeedID:    nextFeed.ID,
+		Title:     feedPtr.Channel.Title,
+		Description: sql.NullString{
+			String: feedPtr.Channel.Description,
+			Valid:  true,
+		},
+		Url: feedPtr.Channel.Link,
+		PublishedAt: sql.NullTime{
+			Time:  nextFeed.CreatedAt,
+			Valid: true,
+		},
+	}
+
+	if _, err := s.db.CreatePost(context.Background(), postArg); err != nil {
+		return err
+	}
+
 	return nil
 }
