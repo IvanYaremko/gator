@@ -33,3 +33,7 @@ WHERE feed_follows.user_id = $1;
 
 -- name: DeleteFeedFollows :exec
 DELETE FROM feed_follows;
+
+-- name: DeleteFeedFollowsById :exec
+DELETE from feed_follows
+WHERE user_id = $1 AND feed_id = $2;
