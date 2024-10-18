@@ -24,7 +24,7 @@ func main() {
 
 	db, err := sql.Open("postgres", configuration.DbURL)
 	if err != nil {
-		fmt.Println("error sql.Open")
+		fmt.Println("error sql open")
 	}
 	dbQueries := database.New(db)
 
@@ -41,7 +41,7 @@ func main() {
 	commands.register("register", handlerRegister)
 	commands.register("reset", handlerReset)
 	commands.register("users", hanlderUsers)
-	commands.register("agg", handlerAgg)
+	commands.register("agg", middlewareLoggedIn(handlerAgg))
 	commands.register("addfeed", middlewareLoggedIn(handlerAddFeed))
 	commands.register("feeds", handlerFeeds)
 	commands.register("follow", middlewareLoggedIn(handlerFollow))

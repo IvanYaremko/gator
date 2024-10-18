@@ -40,11 +40,13 @@ func fetchFeed(ctx context.Context, feedUrl string) (*RSSFeed, error) {
 	fmt.Println("Blog: ", rssFeed.Channel.Title)
 	fmt.Println("Description: ", rssFeed.Channel.Title)
 
-	for _, item := range rssFeed.Channel.Item {
+	for i := 0; i < 2; i++ {
+		fmt.Println("******************")
+		item := rssFeed.Channel.Item[i]
 		fmt.Println("Title: ", item.Title)
 		fmt.Println("Publication date: ", item.PubDate)
 		fmt.Println("Link: ", item.Link)
 		fmt.Println("Description: ", item.Description)
 	}
-	return &RSSFeed{}, nil
+	return &rssFeed, nil
 }
