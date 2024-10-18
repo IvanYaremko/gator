@@ -23,4 +23,4 @@ SELECT * FROM feeds WHERE url = $1;
 SELECT * FROM feeds;
 
 -- name: DeleteFeeds :exec
-TRUNCATE feeds;
+DELETE from feeds;

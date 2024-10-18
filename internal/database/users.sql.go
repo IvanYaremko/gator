@@ -48,7 +48,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 }
 
 const deteleUsers = `-- name: DeteleUsers :exec
-TRUNCATE users
+DELETE FROM users
 `
 
 func (q *Queries) DeteleUsers(ctx context.Context) error {

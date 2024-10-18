@@ -37,7 +37,7 @@ type CreateFeedParams struct {
 	UpdatedAt time.Time
 	Name      string
 	Url       string
-	UserID    uuid.NullUUID
+	UserID    uuid.UUID
 }
 
 func (q *Queries) CreateFeed(ctx context.Context, arg CreateFeedParams) (Feed, error) {
@@ -62,7 +62,7 @@ func (q *Queries) CreateFeed(ctx context.Context, arg CreateFeedParams) (Feed, e
 }
 
 const deleteFeeds = `-- name: DeleteFeeds :exec
-TRUNCATE feeds
+DELETE from feeds
 `
 
 func (q *Queries) DeleteFeeds(ctx context.Context) error {
