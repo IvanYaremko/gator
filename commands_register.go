@@ -29,13 +29,10 @@ func handlerRegister(s *state, cmd command) error {
 		CreatedAt: time.Now(),
 	}
 	user, err := s.db.CreateUser(context.Background(), createParams)
-
 	if err != nil {
 		log.Fatal("Error creating user")
 	}
-
 	s.cfg.SetUser(user.Name)
-
 	fmt.Println("user was created")
 	fmt.Println("name: ", user.Name)
 	fmt.Println("created at: ", user.CreatedAt)
